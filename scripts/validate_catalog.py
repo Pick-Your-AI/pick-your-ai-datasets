@@ -184,10 +184,32 @@ def validate(root: Path, publication=False, today=None):
         if not problems:
             errors += validate_records(records, today, publication and directory == PROPOSALS, synthetic, root)
         stats[directory] = len(records)
-    stray = [str(p.relative_to(root)) for d in ('catalog', 'evidence', 'research') for p in (root / d).rglob('*')
-             if p.is_file() and p.suffix.lower() not in ('.json', '.md')]
-    errors += [f'{s}: only JSON metadata and Markdown notes are permitted; dataset contents must not be committed' for s in stray]
+    errors += material_errors(root)
     return sorted(set(errors)), stats
+
+
+def material_errors(root: Path) -> list[str]:
+    """Every file under the material roots must be Markdown or a JSON record that is actually validated.
+
+    Records are loaded only as direct, lowercase-.json children of catalog/proposals/ and
+    examples/. Any other JSON (nested, another directory, or a .JSON/.Json extension) would
+    escape validation, so it is rejected instead of being silently ignored.
+    """
+    validated = {root / PROPOSALS, root / EXAMPLES}
+    errors = []
+    for d in ('catalog', 'evidence', 'research', 'examples'):
+        for p in sorted((root / d).rglob('*')):
+            if not p.is_file():
+                continue
+            rel = str(p.relative_to(root))
+            suffix = p.suffix.lower()
+            if suffix not in ('.json', '.md'):
+                errors.append(f'{rel}: only JSON metadata and Markdown notes are permitted; dataset contents must not be committed')
+            elif suffix == '.json' and p.suffix != '.json':
+                errors.append(f'{rel}: JSON records must use the lowercase .json extension to be validated')
+            elif suffix == '.json' and p.parent not in validated:
+                errors.append(f'{rel}: JSON outside a validated record location; place records directly in {PROPOSALS}/ or {EXAMPLES}/')
+    return errors
 
 
 def main(argv=None):

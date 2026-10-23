@@ -146,6 +146,55 @@ class SourceTests(CatalogTestCase):
         self.assert_rejected('dataset contents must not be committed')
 
 
+class MaterialLocationTests(CatalogTestCase):
+    """PR #74 review: every JSON path the material rules permit must be validated or rejected."""
+
+    def nested(self, name, text, directory='catalog/proposals/nested'):
+        (self.root / directory).mkdir(parents=True, exist_ok=True)
+        (self.root / directory / name).write_text(text, encoding='utf-8')
+
+    def test_nested_proposal_cannot_escape_publication_gates(self):
+        self.put('a.json', self.proposal())
+        direct = self.errors(publication=True)
+        self.assertTrue(any('publication gate rejects a candidate proposal' in e for e in direct), direct)
+        record = (self.root / 'catalog/proposals/a.json').read_text(encoding='utf-8')
+        (self.root / 'catalog/proposals/a.json').unlink()
+        self.nested('record.json', record)
+        self.assert_rejected('JSON outside a validated record location', publication=True)
+
+    def test_malformed_nested_json_is_rejected(self):
+        self.nested('broken.json', '{not json')
+        self.assert_rejected('catalog/proposals/nested/broken.json: JSON outside a validated record location')
+
+    def test_uppercase_extension_is_rejected(self):
+        (self.root / 'catalog/proposals/broken.JSON').write_text('{not json', encoding='utf-8')
+        self.assert_rejected('must use the lowercase .json extension')
+        (self.root / 'catalog/proposals/broken.JSON').unlink()
+        (self.root / 'catalog/proposals/record.Json').write_text(json.dumps(self.proposal()), encoding='utf-8')
+        self.assert_rejected('must use the lowercase .json extension')
+
+    def test_malformed_direct_json_is_rejected(self):
+        (self.root / 'catalog/proposals/broken.json').write_text('{not json', encoding='utf-8')
+        self.assertTrue(self.errors())
+
+    def test_nested_synthetic_record_cannot_evade_placement(self):
+        self.nested('synthetic.json', json.dumps(self.example))
+        self.assert_rejected('JSON outside a validated record location')
+
+    def test_json_outside_record_directories_is_rejected(self):
+        for directory in ('catalog', 'evidence', 'research/sources', 'examples/nested'):
+            with self.subTest(directory=directory):
+                self.nested('stray.json', '{}', directory)
+                self.assert_rejected(f'{directory}/stray.json: JSON outside a validated record location')
+
+    def test_controls_are_preserved(self):
+        self.put('a.json', self.proposal())
+        self.nested('notes.md', '# Research note\n')
+        self.assertEqual(self.errors(), [])
+        self.nested('sample.csv', 'a,b\n')
+        self.assert_rejected('dataset contents must not be committed')
+
+
 class RightsAndPublicationTests(CatalogTestCase):
     def test_withheld_proposal_fails_publication_gate(self):
         self.put('a.json', self.proposal(publication_state='withheld'))
