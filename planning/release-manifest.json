@@ -1,0 +1,18 @@
+{
+  "schema_version": "1.0.0",
+  "release": "0.1.0-foundation",
+  "status": "unreleased",
+  "publishes_records": false,
+  "backlog_items_sha256": "3a2cda74a836456647d569586663a42fff5d59250107702d2948e0be9e3deddd",
+  "counts": {
+    "Program": 1,
+    "Epic": 12,
+    "Work Package": 60,
+    "tasks": 124,
+    "subtasks": 284,
+    "prerequisites": 84,
+    "internal_parents": 72,
+    "project_field_values": 1095
+  },
+  "note": "Foundation planning baseline only. No dataset record is published by this release."
+}

@@ -1,0 +1,91 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "planning-release",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "1.0.0"
+    },
+    "release": {
+      "type": "string",
+      "minLength": 1
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "unreleased",
+        "released"
+      ]
+    },
+    "publishes_records": {
+      "type": "boolean"
+    },
+    "backlog_items_sha256": {
+      "type": "string",
+      "pattern": "[0-9a-f]{64}"
+    },
+    "counts": {
+      "type": "object",
+      "properties": {
+        "Program": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "Epic": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "Work Package": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "tasks": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "subtasks": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "prerequisites": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "internal_parents": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "project_field_values": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "required": [
+        "Program",
+        "Epic",
+        "Work Package",
+        "tasks",
+        "subtasks",
+        "prerequisites",
+        "internal_parents",
+        "project_field_values"
+      ],
+      "additionalProperties": false
+    },
+    "note": {
+      "type": "string",
+      "minLength": 1
+    }
+  },
+  "required": [
+    "schema_version",
+    "release",
+    "status",
+    "publishes_records",
+    "backlog_items_sha256",
+    "counts",
+    "note"
+  ],
+  "additionalProperties": false
+}

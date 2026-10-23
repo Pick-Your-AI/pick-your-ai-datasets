@@ -1,0 +1,22 @@
+name: Work package proposal
+description: Propose a new or changed independently reviewable work package.
+title: "[Work package proposal] "
+body:
+  - type: markdown
+    attributes:
+      value: Accepted work packages are added to planning/project-backlog.json through a pull request and published as native sub-issues. Smaller steps are checklist tasks, not new issues.
+  - type: input
+    id: epic
+    attributes: {label: Parent epic, placeholder: DATA-07}
+    validations: {required: true}
+  - type: textarea
+    id: outcome
+    attributes: {label: Outcome, deliverables and artifact paths}
+    validations: {required: true}
+  - type: textarea
+    id: acceptance
+    attributes: {label: Acceptance criteria and non-goals}
+    validations: {required: true}
+  - type: textarea
+    id: deps
+    attributes: {label: True prerequisites and cross-repository handoffs}

@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "planning-issue-map",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "1.0.0"
+    },
+    "repository": {
+      "type": "string",
+      "const": "Pick-Your-AI/pick-your-ai-datasets"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "not_published",
+        "published"
+      ]
+    },
+    "issues": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "integer",
+        "minimum": 1
+      }
+    }
+  },
+  "required": [
+    "schema_version",
+    "repository",
+    "status",
+    "issues"
+  ],
+  "additionalProperties": false
+}

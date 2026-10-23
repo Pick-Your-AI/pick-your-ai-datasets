@@ -1,0 +1,16 @@
+name: Correction
+description: Report an error in a record, plan or document, with supporting evidence.
+title: "[Correction] "
+body:
+  - type: input
+    id: target
+    attributes: {label: Affected record, file or issue}
+    validations: {required: true}
+  - type: textarea
+    id: error
+    attributes: {label: What is wrong}
+    validations: {required: true}
+  - type: textarea
+    id: evidence
+    attributes: {label: Supporting evidence, description: "Public sources with access dates. For restricted material, use a private security report instead."}
+    validations: {required: true}

@@ -1,0 +1,142 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "planning-coverage",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "1.0.0"
+    },
+    "method": {
+      "type": "string",
+      "minLength": 1
+    },
+    "as_of": {
+      "type": "string",
+      "format": "date"
+    },
+    "rows": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "COV-[A-Z]+-[A-Z]+"
+          },
+          "dimension": {
+            "type": "string",
+            "enum": [
+              "modality",
+              "benchmark",
+              "source"
+            ]
+          },
+          "term": {
+            "type": "string",
+            "minLength": 1
+          },
+          "owning_work_package": {
+            "type": "string",
+            "pattern": "DATA-\\d{2}\\.\\d{2}"
+          },
+          "existing_research_owners": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "Pick-Your-AI/[a-z0-9.-]+#\\d+"
+            },
+            "uniqueItems": true
+          },
+          "denominator": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": 0
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "denominator_source": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uri"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "denominator_counted_on": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "candidate_records": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "accepted_records": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "not_started",
+              "in_progress",
+              "counted",
+              "accepted"
+            ]
+          },
+          "evidence_confidence": {
+            "type": "string",
+            "enum": [
+              "Unverified",
+              "Low",
+              "Medium",
+              "High"
+            ]
+          },
+          "note": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "id",
+          "dimension",
+          "term",
+          "owning_work_package",
+          "existing_research_owners",
+          "denominator",
+          "denominator_source",
+          "denominator_counted_on",
+          "candidate_records",
+          "accepted_records",
+          "status",
+          "evidence_confidence",
+          "note"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 1
+    }
+  },
+  "required": [
+    "schema_version",
+    "method",
+    "as_of",
+    "rows"
+  ],
+  "additionalProperties": false
+}

@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Security or restricted-material report
+    url: https://github.com/Pick-Your-AI/pick-your-ai-datasets/security/advisories/new
+    about: Report leaked secrets, personal data or restricted dataset material privately.
+  - name: Organization contribution policy
+    url: https://github.com/Pick-Your-AI/.github/blob/main/CONTRIBUTING.md
+    about: Access, branch, review and merge rules.
