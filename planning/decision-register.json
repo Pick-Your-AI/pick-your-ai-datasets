@@ -1,0 +1,77 @@
+{
+  "schema_version": "1.0.0",
+  "decisions": [
+    {
+      "id": "DEC-001",
+      "title": "Create pick-your-ai-datasets as the dataset and benchmark directory research repository",
+      "rationale": "Research #509 routing row G11 proposes a standalone datasets repository; existing T5 #32 and T6 #36 keep their decision rules.",
+      "status": "proposed",
+      "proposed_on": "2026-10-23",
+      "proposed_by": "CompleteDotTech",
+      "accepted_on": null,
+      "accepted_by": null,
+      "evidence": [
+        "https://github.com/Pick-Your-AI/pick-your-ai-research/issues/509"
+      ],
+      "acceptance_requirement": "Independent non-author approval of the foundation pull request"
+    },
+    {
+      "id": "DEC-002",
+      "title": "Represent program, epics and work packages as native issues; tasks and subtasks as checklists",
+      "rationale": "Native sub-issues carry independently reviewable outcomes; smaller steps stay in nested checklists so they are not duplicated as issues.",
+      "status": "proposed",
+      "proposed_on": "2026-10-23",
+      "proposed_by": "CompleteDotTech",
+      "accepted_on": null,
+      "accepted_by": null,
+      "evidence": [
+        "docs/DELIVERY_PLAN.md"
+      ],
+      "acceptance_requirement": "Independent non-author approval of the foundation pull request"
+    },
+    {
+      "id": "DEC-003",
+      "title": "Store metadata, evidence pointers and checksums only; never dataset contents",
+      "rationale": "Restricted, personal or unlicensed material must not enter a public repository.",
+      "status": "proposed",
+      "proposed_on": "2026-10-23",
+      "proposed_by": "CompleteDotTech",
+      "accepted_on": null,
+      "accepted_by": null,
+      "evidence": [
+        "docs/SOURCE_RIGHTS.md",
+        "docs/PUBLICATION_POLICY.md"
+      ],
+      "acceptance_requirement": "Independent non-author approval of the foundation pull request"
+    },
+    {
+      "id": "DEC-004",
+      "title": "Apply the organization contributor rulesets and research team grants",
+      "rationale": "Matches the organization CONTRIBUTING.md role model used by the other research repositories.",
+      "status": "proposed",
+      "proposed_on": "2026-10-23",
+      "proposed_by": "CompleteDotTech",
+      "accepted_on": null,
+      "accepted_by": null,
+      "evidence": [
+        "https://github.com/Pick-Your-AI/.github/blob/main/CONTRIBUTING.md"
+      ],
+      "acceptance_requirement": "Independent non-author approval of the foundation pull request"
+    },
+    {
+      "id": "DEC-005",
+      "title": "Use the fifteen Project fields defined in project-backlog.json as the triage model",
+      "rationale": "Initial values are setup values; live triage is preserved and never reset by reconciliation.",
+      "status": "proposed",
+      "proposed_on": "2026-10-23",
+      "proposed_by": "CompleteDotTech",
+      "accepted_on": null,
+      "accepted_by": null,
+      "evidence": [
+        "planning/project-backlog.json",
+        "docs/PROJECT_SETUP.md"
+      ],
+      "acceptance_requirement": "Independent non-author approval of the foundation pull request"
+    }
+  ]
+}

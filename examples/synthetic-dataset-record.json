@@ -1,0 +1,43 @@
+{
+  "schema_version": "0.1.0",
+  "record_id": "dataset.synthetic-example-corpus",
+  "kind": "dataset",
+  "title": "SYNTHETIC example corpus (not a real dataset)",
+  "synthetic": true,
+  "proposed_by": "example-contributor",
+  "publisher": {"name": "Example Publisher (synthetic)", "source_id": "source.synthetic.landing"},
+  "external_ids": [{"kind": "url", "value": "https://example.org/datasets/synthetic-example-corpus", "issuer": "example.org"}],
+  "modalities": ["Text"],
+  "category": "Evaluation Benchmark",
+  "versions": [
+    {
+      "version_id": "dataset.synthetic-example-corpus@1.0.0",
+      "version_label": "1.0.0",
+      "unversioned": false,
+      "released_on": "2026-01-15",
+      "formats": ["jsonl"],
+      "splits": [
+        {"split_id": "test", "name": "test", "size": {"value": 1000, "unit": "examples"}},
+        {"split_id": "validation", "name": "validation", "size": {"value": null, "unit": "examples"}}
+      ],
+      "license": {"spdx": null, "name": "Synthetic example license (not a real license)", "source_id": "source.synthetic.license"},
+      "source_ids": ["source.synthetic.landing"]
+    }
+  ],
+  "rights": {
+    "access_classification": "Not Assessed",
+    "rights_status": "Not Assessed",
+    "permissions": [
+      {"use": "metadata_display", "decision": "unknown", "conditions": [], "source_id": "source.synthetic.license", "reviewed": false}
+    ],
+    "regional_restrictions": []
+  },
+  "relationships": [],
+  "sources": [
+    {"source_id": "source.synthetic.landing", "url": "https://example.org/datasets/synthetic-example-corpus", "publisher": "example.org", "accessed_on": "2026-10-23", "role": "publisher_page"},
+    {"source_id": "source.synthetic.license", "url": "https://example.org/datasets/synthetic-example-corpus/license", "publisher": "example.org", "accessed_on": "2026-10-23", "role": "license_text"}
+  ],
+  "publication_state": "candidate",
+  "withdrawal": null,
+  "reviews": []
+}

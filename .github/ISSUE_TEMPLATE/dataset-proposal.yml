@@ -1,0 +1,29 @@
+name: Dataset or benchmark proposal
+description: Propose a dataset or benchmark record with public sources. Metadata only.
+title: "[Proposal] "
+body:
+  - type: markdown
+    attributes:
+      value: Do not paste dataset contents, samples, personal data or credentials. Unknown values are fine; mark them unknown.
+  - type: input
+    id: title
+    attributes: {label: Title as published}
+    validations: {required: true}
+  - type: input
+    id: source
+    attributes: {label: Primary source URL and access date, description: "Publisher landing page, dataset card or paper revision."}
+    validations: {required: true}
+  - type: textarea
+    id: versions
+    attributes: {label: Versions and splits, description: "Exact version labels as published, or 'unversioned'. Sizes with units, or unknown."}
+    validations: {required: true}
+  - type: textarea
+    id: rights
+    attributes: {label: License, access and permissions, description: "License as stated per version with source; access class; training/evaluation/commercial/redistribution permissions if stated."}
+    validations: {required: true}
+  - type: textarea
+    id: unknowns
+    attributes: {label: Known unknowns}
+  - type: input
+    id: package
+    attributes: {label: Related DATA work package, placeholder: DATA-02.05}
