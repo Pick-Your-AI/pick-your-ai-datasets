@@ -20,3 +20,11 @@ body:
   - type: textarea
     id: deps
     attributes: {label: True prerequisites and cross-repository handoffs}
+  - type: textarea
+    id: routing_context
+    attributes:
+      label: Routing context (optional)
+      description: Only for an unresolved decision. Reuse answers above; do not include private rosters or security details. See CONTRIBUTING.md, Routing decisions.
+      placeholder: "Decision needed; current responsible role; prior disposition; proposed next recipient."
+    validations:
+      required: false
