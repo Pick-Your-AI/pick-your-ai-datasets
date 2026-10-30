@@ -22,3 +22,13 @@ Refs #
 - [ ] No acceptance criterion is marked met without evidence
 
 An approval from someone other than the author is required, and it must come after the latest push.
+
+## Routing context (optional)
+
+<!-- Only for an unresolved decision; reuse information above. See CONTRIBUTING.md,
+Routing decisions. Keep private rosters and security details out of this template. -->
+
+- Decision needed:
+- Current responsible role:
+- Prior disposition:
+- Proposed next recipient:
