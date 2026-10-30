@@ -1,0 +1,5 @@
+for: Pick-Your-AI/pick-your-ai-datasets
+icon: assets/icon.png
+chips:
+  key: ["Datasets"]
+  attrs: ["Python", "MIT"]

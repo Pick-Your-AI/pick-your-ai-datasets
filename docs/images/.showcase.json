@@ -1,0 +1,83 @@
+{
+ "config_sha256": "bd2386d654a06b2602ae9a379db613a44b7718a69e59e596c1aa59b3a6519e56",
+ "fingerprint": "a99291f804bea803e4905db24e2e99be866c3490db5fa1bcc9fb67745c4485f0",
+ "inputs": {
+  "description": "Research and planning for an evidence-backed directory of AI datasets and benchmarks: identity, versions, rights, provenance and evaluation integrity.",
+  "icon_sha256": "389fff9c0fa4aa72e103125ef3868978c0877b3c7a34c09b47c7cc8131aa866d",
+  "language": "Python",
+  "license": "MIT",
+  "override_sha256": "ee0f042d981f27a7d770c73bdfc222c1994b9a74c7777ff3c2d25a68bc2a326c",
+  "owner": "Pick-Your-AI",
+  "repo": "pick-your-ai-datasets",
+  "topics": [
+   "ai",
+   "benchmarks",
+   "data-catalog",
+   "data-provenance",
+   "datasets",
+   "evaluation",
+   "evidence",
+   "open-source",
+   "pick-your-ai",
+   "research"
+  ],
+  "type": "workspace",
+  "visibility": "public"
+ },
+ "outputs": {
+  "banner.png": {
+   "bytes": 83016,
+   "chips": [
+    {
+     "box": [
+      520,
+      241.5,
+      114.0,
+      38
+     ],
+     "kind": "key",
+     "source": "override",
+     "text": "Datasets"
+    },
+    {
+     "box": [
+      646.0,
+      241.5,
+      96.1,
+      38
+     ],
+     "kind": "attr",
+     "source": "override",
+     "text": "Python"
+    },
+    {
+     "box": [
+      754.1,
+      241.5,
+      63.6,
+      38
+     ],
+     "kind": "attr",
+     "source": "override",
+     "text": "MIT"
+    }
+   ],
+   "icon_source": "override",
+   "px": [
+    2560,
+    720
+   ],
+   "repository_id": 1431120964,
+   "scale": 2,
+   "sha256": "a557c2829daf45c235de13afd24871262bfcd00721432c896a7ab15cbe0ceba7"
+  },
+  "card.svg": {
+   "bytes": 24948,
+   "repository_id": 1431120964,
+   "sha256": "05ba2442d87daa51bcc9b9966b82df6c9322921edd60b6ffbadd372c1dfa0932"
+  }
+ },
+ "schema": 1,
+ "skill_version": "1.0.0",
+ "standard": "ct-std-v1"
+}
