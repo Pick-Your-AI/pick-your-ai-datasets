@@ -32,3 +32,13 @@ Run the four commands in `README.md#validate` and report actual results.
 Edit `planning/project-backlog.json`, then run `python3 scripts/render_docs.py`. Never hand-edit generated files.
 
 Use a `contrib/` branch and a pull request. An agent or bot review is analysis, not the required approval from someone other than the author. Do not bypass review, rulesets or required checks.
+
+## Decisions and escalation
+
+For unresolved decisions, follow [CONTRIBUTING.md#routing-decisions](CONTRIBUTING.md#routing-decisions)
+and the [canonical escalation guide](https://github.com/Pick-Your-AI/.github/blob/main/docs/governance/ESCALATION.md).
+Refresh private routing evidence before choosing a recipient. Report unresolved
+roles and failed or stale lookups explicitly; do not infer accepted ownership from
+membership or access. Preserve the existing assignee, local gates and private-reporting
+boundaries. Central links depend on the governance change merging; no automatic
+routing, permission change or recurring job is enabled by these instructions.
