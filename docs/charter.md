@@ -55,6 +55,11 @@ and [PUBLICATION_POLICY.md](PUBLICATION_POLICY.md). Entity kinds and identities 
 Each kind carries an inclusion rule, an exclusion rule and at least two boundary examples. A boundary
 example records the case, the ruling, and the public artifact that makes it a boundary case.
 
+Per `RESEARCH_METHOD.md`, each source names its publisher, its role and the date it was read. The
+arXiv identifiers below resolve at `https://arxiv.org/abs/<id>` and were all accessed on 2026-11-04;
+the publisher is the paper's authors and the role is the primary paper. Worked cases that cite a
+dataset card or repository name that source directly.
+
 ### Dataset
 
 **Include** a collection of examples that a publisher names, describes and can be cited for, where
@@ -85,9 +90,25 @@ version, and a change carrying neither a publisher label nor a host revision.
   task, not only the contents. Ruling: a version, `dataset.squad@2.0`, recorded separately from
   `dataset.squad@1.1`, each with its own evidence.
   *Know What You Don't Know: Unanswerable Questions for SQuAD*, arXiv:1806.03822.
-- The same release served from a second host under an identical revision marker is the same version.
+- The same release distributed from a second host under an identical revision marker is the same version.
   Ruling: not a new version; record the second host with `mirrors`. A differing host revision is a
   distinct version, because that revision is then the only identity the host offers.
+
+  **GSM8K** is the worked case. The authors describe "a dataset of 8.5K high quality linguistically
+  diverse grade school math word problems" (publisher: OpenAI; role: primary paper; arXiv:2110.14168;
+  accessed 2026-11-04). The same material is distributed from the publisher's repository
+  `https://github.com/openai/grade-school-math` (publisher: OpenAI; role: distribution host) and from
+  the dataset `https://huggingface.co/datasets/openai/gsm8k` (publisher: Hugging Face; role: hosting
+  distributor; accessed 2026-11-04), whose card reports a `main` configuration with 7,473 train and
+  1,319 test rows. Ruling: one dataset, and the Hugging Face copy is `mirrors`, not a second version.
+  Both row counts are carried as reported and are not reconciled against the paper's "8.5K"; a
+  reconciliation is a claim this evidence does not support, so the difference stays visible rather
+  than averaged away.
+
+  That dataset card also reports a `socratic` configuration over the same two splits. Whether that is
+  the same version with different annotations or a distinct derived artifact is **not settled by this
+  evidence**, so it does not count as a version ruling and stays an open question under "Applying the
+  rules" below rather than being resolved by assumption.
 
 ### Split
 
@@ -103,6 +124,15 @@ and any partition that spans more than one version.
 - A held-out partition released later as a standalone, separately citable artifact is a dataset, not a
   split. Ruling: give it its own `dataset.<slug>` and record `subset_of` back to the parent, so the
   lineage stays visible without asserting the partition is still internal.
+
+  **BIG-Bench Hard (BBH)** is the worked case. Its authors describe "a suite of 23 challenging
+  BIG-Bench tasks which we call BIG-Bench Hard (BBH)", being the tasks "for which prior language model
+  evaluations did not outperform the average human-rater" (publisher: the BBH authors; role: primary
+  paper; arXiv:2210.09261, *Challenging BIG-Bench Tasks and Whether Chain-of-Thought Can Solve Them*;
+  accessed 2026-11-04). Ruling: BBH is not 23 splits of `benchmark.big-bench`, because a task selection
+  that others can cite, score and compare on its own has its own identity. It is recorded as its own
+  benchmark with `subset_of` back to BIG-bench, and the parent's task list is not decomposed into child
+  splits.
 
 ### Benchmark
 
