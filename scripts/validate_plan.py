@@ -32,6 +32,23 @@ ORG_REPOSITORIES = {'Pick-Your-AI/' + name for name in (
     'pick-your-ai-research', 'pick-your-ai-catalog-pipeline', 'pick-your-ai-applications', 'pick-your-ai-papers',
     'pick-your-ai-website', 'pick-your-ai-datasets', 'pick-your-ai-android', 'pick-your-ai-apple')}
 
+# GitHub assigns App logins a "[bot]" suffix; the other patterns are conventions this repository
+# also treats as automation. AGENTS.md: an agent or bot review is analysis, not the required
+# approval from someone other than the author, so an automation account cannot accept a decision.
+AUTOMATION_LOGINS = frozenset({'github-actions', 'dependabot', 'renovate', 'github-actions[bot]'})
+AUTOMATION_SUFFIXES = ('[bot]', '-bot', '_bot', '.bot', '-automation', '-agent')
+AUTOMATION_PREFIXES = ('bot-', 'bot_', 'automation-')
+
+
+def is_automation_account(login: str) -> bool:
+    """True when a login names an automation account rather than a person."""
+    name = login.strip().lower()
+    if not name:
+        return False
+    return (name in AUTOMATION_LOGINS
+            or name.endswith(AUTOMATION_SUFFIXES)
+            or name.startswith(AUTOMATION_PREFIXES))
+
 
 def load(root: Path):
     docs, problems = {}, []
@@ -167,6 +184,8 @@ def validate_related(docs: dict) -> list[str]:
             errors.append(f'{d["id"]}: acceptance requires a different, dated acceptor')
         if d['status'] == 'proposed' and (d['accepted_by'] or d['accepted_on']):
             errors.append(f'{d["id"]}: a proposed decision cannot record acceptance')
+        if d['accepted_by'] and is_automation_account(d['accepted_by']):
+            errors.append(f'{d["id"]}: an automation account cannot accept a decision ({d["accepted_by"]})')
     manifest = docs['planning/release-manifest.json']
     expected = {t: sum(i['record_type'] == t for i in items) for t in planlib.RECORD_TYPES}
     expected.update(tasks=sum(len(i['tasks']) for i in items), subtasks=sum(len(t['subtasks']) for i in items for t in i['tasks']),

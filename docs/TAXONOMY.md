@@ -24,13 +24,21 @@ Not Assessed · Under Review · Permitted for Metadata Use · Conditional · Res
 
 ## Entity kinds
 
-| Kind | Identity |
-| --- | --- |
-| Dataset | `dataset.<slug>` |
-| Dataset version | `dataset.<slug>@<label>`, using the publisher's version marker or an immutable host revision |
-| Split | A split ID within exactly one version |
-| Benchmark | `benchmark.<slug>`, with versions like datasets |
-| Benchmark run / result | Owned outside this repository; referenced, never stored here |
+A record names exactly one kind. Which kind a boundary case belongs to is decided by the inclusion
+and exclusion rules in [charter.md](charter.md#inclusion-and-exclusion).
+
+| Kind | Identity | Stored here |
+| --- | --- | --- |
+| Dataset | `dataset.<slug>` | Yes |
+| Dataset version | `dataset.<slug>@<label>`, using the publisher's version marker or an immutable host revision | Yes |
+| Split | A split ID within exactly one version | Yes |
+| Benchmark | `benchmark.<slug>`, with versions like datasets | Yes |
+| Benchmark run | Owned outside this repository; referenced by the benchmark version and the evaluated system, never stored here | No |
+| Benchmark result | Owned by the benchmark or the reporting publication; referenced by source and access date, never stored here | No |
+
+A run and a result are separate kinds. A run is the act of evaluating one system on one benchmark
+version; a result is a reported measurement attributed to that run. Because both are owned outside
+this repository, a record that appears to store either one is a kind error, not a record.
 
 ## Relationships
 
