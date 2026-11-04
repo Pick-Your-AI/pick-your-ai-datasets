@@ -167,6 +167,31 @@ class ProjectAndDriftTests(PlanTestCase):
         self.write('planning/decision-register.json', register)
         self.assert_rejected('acceptance requires a different, dated acceptor')
 
+    def test_automation_account_cannot_accept_a_decision(self):
+        pristine = json.loads((ROOT / 'planning/decision-register.json').read_text(encoding='utf-8'))
+        for login in ('dependabot[bot]', 'review-agent', 'bot-reviewer', 'renovate'):
+            with self.subTest(login=login):
+                register = json.loads(json.dumps(pristine))
+                d = register['decisions'][0]
+                d.update(status='accepted', accepted_on='2026-10-23', accepted_by=login)
+                self.write('planning/decision-register.json', register)
+                self.assert_rejected('an automation account cannot accept a decision')
+
+    def test_person_can_accept_a_decision(self):
+        register = self.read('planning/decision-register.json')
+        d = register['decisions'][0]
+        d.update(status='accepted', accepted_on='2026-11-04', accepted_by='a-human-maintainer')
+        self.write('planning/decision-register.json', register)
+        self.assertEqual(self.errors(), [])
+
+    def test_automation_patterns_do_not_match_people(self):
+        for login in ('karutoil', 'CompleteDotTech', 'BunsDev', 'abot', 'robot-enthusiast'):
+            with self.subTest(login=login):
+                self.assertFalse(validate_plan.is_automation_account(login), login)
+        for login in ('dependabot[bot]', 'github-actions', 'review-agent', 'bot-reviewer'):
+            with self.subTest(login=login):
+                self.assertTrue(validate_plan.is_automation_account(login), login)
+
     def test_coverage_requires_counted_denominator(self):
         coverage = self.read('planning/coverage-matrix.json')
         coverage['rows'][0].update(status='counted')
