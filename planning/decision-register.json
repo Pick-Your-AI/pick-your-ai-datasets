@@ -77,14 +77,15 @@
       "id": "DEC-006",
       "title": "Adopt the inclusion and exclusion rules in docs/charter.md as the admission boundary for entity kinds",
       "rationale": "Every entity kind needs an inclusion rule, an exclusion rule and boundary examples before any record can be admitted; the rules separate datasets, benchmarks, benchmark runs and benchmark results so a run or a result is never stored as a record.",
-      "status": "proposed",
+      "status": "accepted",
       "proposed_on": "2026-11-04",
       "proposed_by": "karutoil",
-      "accepted_on": null,
-      "accepted_by": null,
+      "accepted_on": "2026-11-04",
+      "accepted_by": "CompleteDotTech",
       "evidence": [
         "docs/charter.md",
-        "docs/TAXONOMY.md"
+        "docs/TAXONOMY.md",
+        "https://github.com/Pick-Your-AI/pick-your-ai-datasets/pull/77"
       ],
       "acceptance_requirement": "Approval by a lead maintainer of Lead Maintainers - Datasets & Benchmarks who is neither the proposer nor the author of the pull request, recorded here with accepted_by and accepted_on after that approval exists"
     },
@@ -92,14 +93,15 @@
       "id": "DEC-007",
       "title": "Adopt docs/GOVERNANCE.md as the role matrix, decision-type table and decision process",
       "rationale": "The decision register needs named proposer, reviewer and approver roles per decision type, and an independent-review rule that cannot be satisfied by the author or an automation account, before any decision in it can be accepted on a defensible basis.",
-      "status": "proposed",
+      "status": "accepted",
       "proposed_on": "2026-11-04",
       "proposed_by": "karutoil",
-      "accepted_on": null,
-      "accepted_by": null,
+      "accepted_on": "2026-11-04",
+      "accepted_by": "CompleteDotTech",
       "evidence": [
         "docs/GOVERNANCE.md",
-        "https://github.com/Pick-Your-AI/.github/blob/ce32a4f1f7586886da81b421baefeb15974868bb/CONTRIBUTING.md"
+        "https://github.com/Pick-Your-AI/.github/blob/ce32a4f1f7586886da81b421baefeb15974868bb/CONTRIBUTING.md",
+        "https://github.com/Pick-Your-AI/pick-your-ai-datasets/pull/77"
       ],
       "acceptance_requirement": "Approval by a lead maintainer of Lead Maintainers - Datasets & Benchmarks who is neither the proposer nor the author of the pull request, recorded here with accepted_by and accepted_on after that approval exists"
     }
