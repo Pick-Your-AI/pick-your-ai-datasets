@@ -57,6 +57,21 @@ Each decision type names its proposer, independent reviewer and approver.
 Where a work package names further reviewer roles in its own review requirements, those roles
 also apply. This table does not remove a requirement; it names the minimum.
 
+### Vacant specialties, delegation and placeholders
+
+Until a specialty lead team is staffed, its gate is **not** satisfied merely by "any GitHub approver."
+Use the organization owner's explicitly recorded approval for the affected scope, with an account
+that is neither the proposer nor the PR author. If an interim shared Research aide narrows the actual
+scope afterward, keep that narrower evidence tied to its actual decision.
+
+DEC-006 and DEC-007's literal `Lead Maintainers - Datasets & Benchmarks` requirement was too narrow:
+that specialty stage is empty and CompleteDotTech was removed from that team under `.github#18`,
+while remaining the organization owner and repository admin. The earlier acceptance was correctly
+reviewed as a general code PR, but this literal role was not established. I am therefore proposing
+the corrected role-disposition below, with DEC-006 and DEC-007 returned to `proposed` and null
+acceptance fields until the required acceptance is actually evidenced. PR #79 is where that
+reconciliation is reviewed; no silent corrective merge is implied.
+
 ## Independent review
 
 An approval satisfies the independent-review requirement only when all of the following hold:
@@ -69,6 +84,12 @@ An approval satisfies the independent-review requirement only when all of the fo
 `AGENTS.md` already states the second rule for contributors: an agent or bot review is analysis,
 not the required approval from someone other than the author. This page makes it binding for the
 decision register as well.
+
+Where the separated specialty team has too few human members to carry the role, do not silently
+assign that role to a wider team, a placeholder account or an automation credential. Record its
+vacancy and escalate to the organization owner, who supplies the required scope-specific approval
+without pretending to be a specialist. `Research Maintainers` supplies independent evidence review,
+not specialty approval by itself.
 
 Two mechanisms enforce parts of this. The `Review required: default branch` ruleset requires one
 approving review and approval of the most recent push, and only an organization admin can bypass
