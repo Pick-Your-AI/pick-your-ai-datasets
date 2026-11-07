@@ -44,7 +44,7 @@ it does not grant access, appoint an owner, authorize publication or waive a gat
 Use the canonical [escalation guide](https://github.com/Pick-Your-AI/.github/blob/main/docs/governance/ESCALATION.md) and
 [versioned routing policy](https://github.com/Pick-Your-AI/.github/blob/main/governance/escalation-policy.json). These links point to the current organization policy and routing tools. Their use
 provides contact guidance only; it does not grant access, establish ownership or
-activate any automatic routing.
+activate any automatic routing. Do not claim the central tooling is installed or active.
 
 The order is repository team → repository maintainer → repository lead maintainer
 → applicable parent teams → CompleteDotTech. Record a disposition at each level,
