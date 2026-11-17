@@ -70,8 +70,6 @@ python3 -m unittest discover -s tests -v
 
 `python3 scripts/validate_plan.py --live` also reads GitHub through an authenticated `gh` CLI and reports drift between the plan and the actual issues, parents, blockers and Project items. It never writes.
 
-Licensed under the [MIT License](LICENSE). The license covers this repository's own files. It grants no rights over any dataset described here.
-
 ## License
 
-Code and documentation are licensed under the MIT License; see `LICENSE`.
+Licensed under the [MIT License](LICENSE). The license covers this repository's own files. It grants no rights over any dataset described here.
