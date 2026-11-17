@@ -92,6 +92,16 @@ class IdentityTests(CatalogTestCase):
         self.put('a.json', record)
         self.assert_rejected('version label is ambiguous')
 
+    def test_duplicate_version_id_is_rejected(self):
+        record = self.proposal()
+        second = copy.deepcopy(record['versions'][0])
+        # Distinct label, same canonical identity: label-collision coverage alone
+        # does not prove that version-ID collisions are rejected.
+        second['version_label'] = '2.0.0'
+        record['versions'].append(second)
+        self.put('duplicate-version-id.json', record)
+        self.assert_rejected('duplicate version ID')
+
     def test_unversioned_cannot_be_published(self):
         record = self.eligible()
         record['versions'][0].update(version_label=None, unversioned=True)
