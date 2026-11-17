@@ -129,6 +129,20 @@ class DependencyTests(PlanTestCase):
         self.mutate(lambda b, by: by['DATA-01.01']['blocked_by'].append('DATA-01'))
         self.assert_rejected('prerequisites link work packages only')
 
+    def test_item_parent_cannot_repeat_as_prerequisite(self):
+        # Even when the parent is invalid, dependency validation must retain
+        # the separate diagnostic; the schema allows a Work Package-shaped ID.
+        self.mutate(lambda b, by: by['DATA-01.02'].update(parent_id='DATA-01.01'))
+        self.assert_rejected('parent must be a Epic')
+        self.assert_rejected('prerequisite duplicates the parent relationship')
+
+    def test_prerequisite_parent_cannot_point_back_to_item(self):
+        # The other direction of the duplicate-parent guard is also reachable
+        # through syntactically valid but structurally invalid source data.
+        self.mutate(lambda b, by: by['DATA-01.01'].update(parent_id='DATA-01.02'))
+        self.assert_rejected('parent must be a Epic')
+        self.assert_rejected('prerequisite duplicates the parent relationship')
+
     def test_later_phase_prerequisite(self):
         self.mutate(lambda b, by: by['DATA-01.01']['blocked_by'].append('DATA-12.05'))
         self.assert_rejected('from a later release phase')
