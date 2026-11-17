@@ -1,5 +1,9 @@
 # Project setup
 
+The proposed repository layout and exact JSON schema registrations are documented
+in [METADATA_LAYOUT.md](METADATA_LAYOUT.md). Both existing validators enforce the
+registry before loading metadata; this is structural validation, not research acceptance.
+
 ## Resources
 
 | Resource | Value |
