@@ -20,6 +20,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import planlib  # noqa: E402
 import schemalib  # noqa: E402
+import taxonomy  # noqa: E402
 import json_registry  # noqa: E402
 
 FILES = {
@@ -28,6 +29,7 @@ FILES = {
     'planning/decision-register.json': 'planning-decisions',
     'planning/release-manifest.json': 'planning-release',
     'planning/issue-map.json': 'planning-issue-map',
+    'planning/taxonomy.json': 'taxonomy',
 }
 ORG_REPOSITORIES = {'Pick-Your-AI/' + name for name in (
     'pick-your-ai-research', 'pick-your-ai-catalog-pipeline', 'pick-your-ai-applications', 'pick-your-ai-papers',
@@ -165,6 +167,7 @@ def validate_backlog(backlog: dict) -> list[str]:
 def validate_related(docs: dict) -> list[str]:
     errors = []
     backlog = docs['planning/project-backlog.json']
+    errors += taxonomy.validate(docs['planning/taxonomy.json'], backlog)
     items = backlog['items']
     by_id = {i['id']: i for i in items}
     rows = docs['planning/coverage-matrix.json']['rows']

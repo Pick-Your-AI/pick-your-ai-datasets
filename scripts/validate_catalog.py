@@ -19,6 +19,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import planlib  # noqa: E402
 import schemalib  # noqa: E402
 import json_registry  # noqa: E402
+import taxonomy  # noqa: E402
 
 PROPOSALS = 'catalog/proposals'
 EXAMPLES = 'examples'
@@ -45,6 +46,8 @@ def personal_data(value, at='$'):
 def validate_records(records: dict, today: dt.date, publication: bool, expect_synthetic: bool, root: Path) -> list[str]:
     errors = []
     options = {f['name']: f['options'] for f in planlib.load_json(root / 'planning/project-backlog.json')['project']['fields']}
+    terms = planlib.load_json(root / 'planning/taxonomy.json')
+    errors += taxonomy.validate(terms, planlib.load_json(root / 'planning/project-backlog.json'))
     ids, version_ids, labels = {}, {}, set()
     for path, record in records.items():
         rid = record['record_id']
@@ -57,6 +60,7 @@ def validate_records(records: dict, today: dt.date, publication: bool, expect_sy
             version_ids[v['version_id']] = rid
     for path, record in records.items():
         rid, p = record['record_id'], path + ': '
+        errors += [p + e for e in taxonomy.record_errors(record, terms)]
         if record['synthetic'] != expect_synthetic:
             errors.append(p + ('synthetic records belong in examples/ or tests/, never catalog/proposals/' if record['synthetic']
                                else 'examples must be explicitly synthetic'))

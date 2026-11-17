@@ -1,0 +1,166 @@
+{
+  "schema_version": "0.1.0",
+  "status": "proposed",
+  "source": "planning/project-backlog.json#project.fields",
+  "vocabularies": [
+    {"field": "Status", "terms": [
+      {"value": "Backlog", "definition": "Work is recorded but has not been selected for execution.", "scope_note": "Work tracking only; never derive acceptance from an open or closed issue alone."},
+      {"value": "Ready", "definition": "Work is selected and its stated execution inputs are available.", "scope_note": "Work tracking only; never derive acceptance from an open or closed issue alone."},
+      {"value": "In Progress", "definition": "An agreed work package is being implemented or researched.", "scope_note": "Work tracking only; never derive acceptance from an open or closed issue alone."},
+      {"value": "In Review", "definition": "A concrete deliverable is awaiting its required review.", "scope_note": "Work tracking only; never derive acceptance from an open or closed issue alone."},
+      {"value": "Blocked", "definition": "A named missing input or decision prevents the next required step.", "scope_note": "Work tracking only; never derive acceptance from an open or closed issue alone."},
+      {"value": "Done", "definition": "All acceptance criteria have supporting evidence and required acceptance.", "scope_note": "Work tracking only; never derive acceptance from an open or closed issue alone."}
+    ]},
+    {"field": "Priority", "terms": [
+      {"value": "P0", "definition": "Highest ordering priority for the declared delivery plan.", "scope_note": "Relative ordering only; this term promises no deadline, staffing or spending."},
+      {"value": "P1", "definition": "High ordering priority after critical foundation dependencies.", "scope_note": "Relative ordering only; this term promises no deadline, staffing or spending."},
+      {"value": "P2", "definition": "Normal ordering priority after higher-priority prerequisites.", "scope_note": "Relative ordering only; this term promises no deadline, staffing or spending."},
+      {"value": "P3", "definition": "Lower ordering priority; retain an explicit disposition.", "scope_note": "Relative ordering only; this term promises no deadline, staffing or spending."}
+    ]},
+    {"field": "Record Type", "terms": [
+      {"value": "Program", "definition": "The coordinating outcome that contains the twelve dataset workstreams.", "scope_note": "Native issues model these levels; tasks and subtasks remain checklist entries."},
+      {"value": "Epic", "definition": "A workstream containing independently reviewable work packages.", "scope_note": "Native issues model these levels; tasks and subtasks remain checklist entries."},
+      {"value": "Work Package", "definition": "A bounded deliverable with acceptance criteria and checklist tasks.", "scope_note": "Native issues model these levels; tasks and subtasks remain checklist entries."}
+    ]},
+    {"field": "Workstream", "terms": [
+      {"value": "Program", "definition": "Coordinates all dataset and benchmark workstreams.", "scope_note": "Scope follows the named canonical epic; this option assigns no operational owner."},
+      {"value": "01 Scope, taxonomy and governance", "definition": "Define what the datasets and benchmark directory covers, how coverage is measured, who decides, and how it relates to research already owned elsewhere.", "scope_note": "Scope follows the named canonical epic; this option assigns no operational owner."},
+      {"value": "02 Dataset discovery and source inventory", "definition": "Find candidate datasets and benchmarks across academic, official, commercial, community, government and specialized sources through documented, permitted discovery methods.", "scope_note": "Scope follows the named canonical epic; this option assigns no operational owner."},
+      {"value": "03 Modality coverage", "definition": "Establish modality-specific identity, metadata and coverage rules for text, code, image, video, speech, audio, multimodal, time series, tabular, geospatial, robotics, scientific, graph and structured data.", "scope_note": "Scope follows the named canonical epic; this option assigns no operational owner."},
+      {"value": "04 Dataset identity, versions and relationships", "definition": "Model dataset identifiers, publisher metadata, versions, subsets, splits, formats, units and inter-dataset relationships without merging distinct artifacts.", "scope_note": "Scope follows the named canonical epic; this option assigns no operational owner."},
+      {"value": "05 Licensing, access, consent and rights", "definition": "Record per-version license, access, consent, privacy, training/evaluation rights, commercial permissions, regional restrictions and withdrawals as reviewed, scoped assertions.", "scope_note": "Scope follows the named canonical epic; this option assigns no operational owner."},
+      {"value": "06 Provenance, quality, bias and reproducibility", "definition": "Document collection provenance, annotation methods, representativeness, quality, contamination risks, bias evidence and reproducibility of dataset construction.", "scope_note": "Scope follows the named canonical epic; this option assigns no operational owner."},
+      {"value": "07 Benchmark datasets and grading semantics", "definition": "Describe benchmark datasets for language, reasoning, coding, vision, audio, retrieval, embeddings, agents, safety and scientific tasks, including their exact grading semantics.", "scope_note": "Scope follows the named canonical epic; this option assigns no operational owner."},
+      {"value": "08 Evaluation integrity and comparability", "definition": "Define leakage prevention, split boundaries, scoring comparability, human evaluation, statistical uncertainty and hidden-test handling before any result is compared.", "scope_note": "Scope follows the named canonical epic; this option assigns no operational owner."},
+      {"value": "09 Metadata storage, manifests and recovery", "definition": "Store dataset metadata, version history, manifests and checksums with retention, withdrawal and recovery procedures, without storing restricted dataset contents.", "scope_note": "Scope follows the named canonical epic; this option assigns no operational owner."},
+      {"value": "10 Cross-repository integration", "definition": "Integrate with existing T1, T3, T5 and T6 research, the catalog pipeline, applications, papers and website through explicit, versioned handoffs.", "scope_note": "Scope follows the named canonical epic; this option assigns no operational owner."},
+      {"value": "11 Search, directory and consumer experience", "definition": "Specify search, discovery, directory pages, filters, comparisons, citations, exports, accessibility and localization requirements for eventual consumers.", "scope_note": "Scope follows the named canonical epic; this option assigns no operational owner."},
+      {"value": "12 Contribution, freshness and maintenance", "definition": "Run the contributor workflow, freshness monitoring, corrections, editorial review, testing, publication acceptance and long-term maintenance.", "scope_note": "Scope follows the named canonical epic; this option assigns no operational owner."}
+    ]},
+    {"field": "Readiness", "terms": [
+      {"value": "Ready", "definition": "The next execution step has its required inputs.", "scope_note": "Describe the next step separately from the deliverable acceptance status."},
+      {"value": "Needs Input", "definition": "A concrete source, artifact or receiving input is missing.", "scope_note": "Describe the next step separately from the deliverable acceptance status."},
+      {"value": "Awaiting Decision", "definition": "An identified owner or reviewer must decide a documented question.", "scope_note": "Describe the next step separately from the deliverable acceptance status."},
+      {"value": "Blocked", "definition": "A prerequisite or constraint prevents execution of the next step.", "scope_note": "Describe the next step separately from the deliverable acceptance status."}
+    ]},
+    {"field": "Dataset Modality", "terms": [
+      {"value": "Cross-modal", "definition": "Planning work that spans several modalities without selecting one.", "scope_note": "A classification of described material; it grants no access or use permission."},
+      {"value": "Text", "definition": "Natural-language text and other written linguistic material.", "scope_note": "A classification of described material; it grants no access or use permission."},
+      {"value": "Code", "definition": "Source code, program structure or programming-related material.", "scope_note": "A classification of described material; it grants no access or use permission."},
+      {"value": "Image", "definition": "Still visual material, including associated annotations.", "scope_note": "A classification of described material; it grants no access or use permission."},
+      {"value": "Video", "definition": "Visual material organized as a sequence of frames.", "scope_note": "A classification of described material; it grants no access or use permission."},
+      {"value": "Speech & Audio", "definition": "Speech recordings or other acoustic material and their annotations.", "scope_note": "A classification of described material; it grants no access or use permission."},
+      {"value": "Multimodal", "definition": "An artifact combining more than one component modality.", "scope_note": "A classification of described material; it grants no access or use permission."},
+      {"value": "Time Series", "definition": "Measurements or events indexed by temporal order.", "scope_note": "A classification of described material; it grants no access or use permission."},
+      {"value": "Tabular", "definition": "Records organized into rows with named fields or columns.", "scope_note": "A classification of described material; it grants no access or use permission."},
+      {"value": "Geospatial", "definition": "Material whose spatial coordinates or geographic reference matter.", "scope_note": "A classification of described material; it grants no access or use permission."},
+      {"value": "Robotics", "definition": "Material describing robot observations, actions or trajectories.", "scope_note": "A classification of described material; it grants no access or use permission."},
+      {"value": "Scientific", "definition": "Scientific measurements, simulations or domain structures.", "scope_note": "A classification of described material; it grants no access or use permission."},
+      {"value": "Graph & Structured", "definition": "Relations, graphs or other explicitly structured objects.", "scope_note": "A classification of described material; it grants no access or use permission."},
+      {"value": "Not Applicable", "definition": "Process work for which a dataset modality is inapplicable.", "scope_note": "A classification of described material; it grants no access or use permission."}
+    ]},
+    {"field": "Dataset Category", "terms": [
+      {"value": "Cross-category", "definition": "Planning work spanning several dataset purposes.", "scope_note": "A stated research purpose; it is not evidence of suitability, rights or quality."},
+      {"value": "Training Corpus", "definition": "A corpus described for training a model.", "scope_note": "A stated research purpose; it is not evidence of suitability, rights or quality."},
+      {"value": "Fine-tuning & Instruction", "definition": "Material described for adaptation, instruction following or fine tuning.", "scope_note": "A stated research purpose; it is not evidence of suitability, rights or quality."},
+      {"value": "Evaluation Benchmark", "definition": "An evaluation instrument with a defined task and scoring protocol.", "scope_note": "A stated research purpose; it is not evidence of suitability, rights or quality."},
+      {"value": "Retrieval & Embedding Corpus", "definition": "Material used for retrieval or embedding research.", "scope_note": "A stated research purpose; it is not evidence of suitability, rights or quality."},
+      {"value": "Safety & Red-team", "definition": "Material described for safety evaluation or adversarial analysis.", "scope_note": "A stated research purpose; it is not evidence of suitability, rights or quality."},
+      {"value": "Synthetic", "definition": "Material described as generated rather than directly observed.", "scope_note": "A stated research purpose; it is not evidence of suitability, rights or quality."},
+      {"value": "Domain/Specialized", "definition": "Material selected for a particular subject or specialist use.", "scope_note": "A stated research purpose; it is not evidence of suitability, rights or quality."},
+      {"value": "Not Applicable", "definition": "Process work for which a dataset purpose is inapplicable.", "scope_note": "A stated research purpose; it is not evidence of suitability, rights or quality."}
+    ]},
+    {"field": "Access Classification", "terms": [
+      {"value": "Not Assessed", "definition": "The access conditions have not been assessed.", "scope_note": "Access conditions are separate from licensing, consent and per-use rights."},
+      {"value": "Open", "definition": "The documented access route has no registration or approval gate.", "scope_note": "Access conditions are separate from licensing, consent and per-use rights."},
+      {"value": "Registration Required", "definition": "The documented access route requires an account or registration.", "scope_note": "Access conditions are separate from licensing, consent and per-use rights."},
+      {"value": "Gated/Approval", "definition": "The documented access route requires permission or approval.", "scope_note": "Access conditions are separate from licensing, consent and per-use rights."},
+      {"value": "Restricted/Sensitive", "definition": "Access is restricted or the material is classified as sensitive.", "scope_note": "Access conditions are separate from licensing, consent and per-use rights."},
+      {"value": "Commercial/Paid", "definition": "The documented access route is commercial or requires payment.", "scope_note": "Access conditions are separate from licensing, consent and per-use rights."},
+      {"value": "Mixed", "definition": "Different documented components or versions have different access gates.", "scope_note": "Access conditions are separate from licensing, consent and per-use rights."},
+      {"value": "Not Applicable", "definition": "The planning item has no dataset access condition to assess.", "scope_note": "Access conditions are separate from licensing, consent and per-use rights."}
+    ]},
+    {"field": "License/Rights Status", "terms": [
+      {"value": "Not Assessed", "definition": "Evidence for the relevant rights assessment has not been evaluated.", "scope_note": "Bind the assessment to the version and use; never infer consent or redistribution."},
+      {"value": "Under Review", "definition": "A rights assessment has been proposed and is awaiting review.", "scope_note": "Bind the assessment to the version and use; never infer consent or redistribution."},
+      {"value": "Permitted for Metadata Use", "definition": "Required review permits the described metadata use only.", "scope_note": "Bind the assessment to the version and use; never infer consent or redistribution."},
+      {"value": "Conditional", "definition": "The assessed use depends on explicit recorded conditions.", "scope_note": "Bind the assessment to the version and use; never infer consent or redistribution."},
+      {"value": "Restricted", "definition": "The assessed use is restricted and must not be assumed permitted.", "scope_note": "Bind the assessment to the version and use; never infer consent or redistribution."},
+      {"value": "Withdrawn/Disputed", "definition": "A withdrawal or unresolved rights dispute affects the assessment.", "scope_note": "Bind the assessment to the version and use; never infer consent or redistribution."},
+      {"value": "Not Applicable", "definition": "The planning item has no dataset rights assessment.", "scope_note": "Bind the assessment to the version and use; never infer consent or redistribution."}
+    ]},
+    {"field": "Evidence Confidence", "terms": [
+      {"value": "Unverified", "definition": "A proposed claim whose sources have not yet been checked.", "scope_note": "Applies to one claim about one version, not a quality score for the entire dataset."},
+      {"value": "Low", "definition": "A claim supported by one source or by sources with unresolved disagreement.", "scope_note": "Applies to one claim about one version, not a quality score for the entire dataset."},
+      {"value": "Medium", "definition": "The publisher primary source has been checked for the exact version.", "scope_note": "Applies to one claim about one version, not a quality score for the entire dataset."},
+      {"value": "High", "definition": "The publisher primary source and independent corroboration have been reviewed.", "scope_note": "Applies to one claim about one version, not a quality score for the entire dataset."}
+    ]},
+    {"field": "Source Freshness", "terms": [
+      {"value": "Not Collected", "definition": "No source observation has been collected for the claim.", "scope_note": "Thresholds require DATA-12.02 review; an access date alone does not establish freshness."},
+      {"value": "Current", "definition": "The source observation falls within the applicable reviewed freshness target.", "scope_note": "Thresholds require DATA-12.02 review; an access date alone does not establish freshness."},
+      {"value": "Due for Refresh", "definition": "The source observation has reached its applicable reviewed refresh threshold.", "scope_note": "Thresholds require DATA-12.02 review; an access date alone does not establish freshness."},
+      {"value": "Stale", "definition": "The source observation exceeds its applicable reviewed freshness limit.", "scope_note": "Thresholds require DATA-12.02 review; an access date alone does not establish freshness."},
+      {"value": "Not Applicable", "definition": "The planning item has no source freshness measure.", "scope_note": "Thresholds require DATA-12.02 review; an access date alone does not establish freshness."}
+    ]},
+    {"field": "Dependency Status", "terms": [
+      {"value": "Unblocked", "definition": "No unmet declared prerequisite prevents the next step.", "scope_note": "Use declared prerequisites and current evidence; hierarchy alone is not a dependency."},
+      {"value": "Waiting", "definition": "Declared prerequisite work is awaiting its own completion or acceptance.", "scope_note": "Use declared prerequisites and current evidence; hierarchy alone is not a dependency."},
+      {"value": "Blocked", "definition": "An identified dependency cannot currently be satisfied.", "scope_note": "Use declared prerequisites and current evidence; hierarchy alone is not a dependency."}
+    ]},
+    {"field": "Effort", "terms": [
+      {"value": "XS", "definition": "Smallest relative work estimate in this planning vocabulary.", "scope_note": "An ordinal estimate only; no hours or capacity are implied."},
+      {"value": "S", "definition": "Small relative work estimate in this planning vocabulary.", "scope_note": "An ordinal estimate only; no hours or capacity are implied."},
+      {"value": "M", "definition": "Medium relative work estimate in this planning vocabulary.", "scope_note": "An ordinal estimate only; no hours or capacity are implied."},
+      {"value": "L", "definition": "Large relative work estimate in this planning vocabulary.", "scope_note": "An ordinal estimate only; no hours or capacity are implied."},
+      {"value": "XL", "definition": "Largest relative work estimate in this planning vocabulary.", "scope_note": "An ordinal estimate only; no hours or capacity are implied."}
+    ]},
+    {"field": "Release Phase", "terms": [
+      {"value": "Foundation", "definition": "Establish repository structure, scope and decision foundations.", "scope_note": "Planning order only; the term does not authorize publication or deployment."},
+      {"value": "Discovery", "definition": "Identify and assess sources and candidate coverage.", "scope_note": "Planning order only; the term does not authorize publication or deployment."},
+      {"value": "Metadata Pilot", "definition": "Develop and review initial metadata records and semantics.", "scope_note": "Planning order only; the term does not authorize publication or deployment."},
+      {"value": "Integration", "definition": "Prepare metadata storage and receiving repository contracts.", "scope_note": "Planning order only; the term does not authorize publication or deployment."},
+      {"value": "Directory Beta", "definition": "Specify and review the directory consumer experience.", "scope_note": "Planning order only; the term does not authorize publication or deployment."},
+      {"value": "Maintenance", "definition": "Maintain freshness, corrections and ongoing ownership.", "scope_note": "Planning order only; the term does not authorize publication or deployment."}
+    ]},
+    {"field": "Acceptance Status", "terms": [
+      {"value": "Not Started", "definition": "No acceptance assessment has begun for the deliverable.", "scope_note": "Preserve human and specialty approval requirements; agent analysis is not approval."},
+      {"value": "In Progress", "definition": "Acceptance evidence is being assembled or reviewed.", "scope_note": "Preserve human and specialty approval requirements; agent analysis is not approval."},
+      {"value": "Changes Requested", "definition": "The required reviewer has identified unresolved changes.", "scope_note": "Preserve human and specialty approval requirements; agent analysis is not approval."},
+      {"value": "Accepted", "definition": "The required independent approval is evidenced for the deliverable.", "scope_note": "Preserve human and specialty approval requirements; agent analysis is not approval."},
+      {"value": "Deferred", "definition": "A reviewed decision explicitly postpones the acceptance scope.", "scope_note": "Preserve human and specialty approval requirements; agent analysis is not approval."}
+    ]}
+  ],
+  "record_vocabularies": [
+    {"field": "task_families", "terms": [
+    {"value": "classification", "definition": "Assign one or more declared categories.", "scope_note": "Includes classification across modalities; category labels do not define dataset domain."},
+    {"value": "regression", "definition": "Estimate a numeric target.", "scope_note": "Distinguish a predicted value from the metric used to grade it."},
+    {"value": "clustering", "definition": "Group observations without a declared target class.", "scope_note": "Group membership is an output, not a claim of shared provenance."},
+    {"value": "generation", "definition": "Produce content in a declared output modality.", "scope_note": "Record component modalities separately; does not imply permitted training use."},
+    {"value": "retrieval", "definition": "Select relevant items from a declared collection.", "scope_note": "The query, candidate collection and relevance definition remain version-specific."},
+    {"value": "ranking", "definition": "Order a declared set of candidates.", "scope_note": "Use alongside retrieval only when both operations are evidenced."},
+    {"value": "question-answering", "definition": "Produce an answer to a stated question.", "scope_note": "Does not imply that answer keys are public or may be copied."},
+    {"value": "translation", "definition": "Transform content between declared languages.", "scope_note": "Do not infer language identity or translation quality from this label."},
+    {"value": "summarization", "definition": "Produce a shorter representation of source content.", "scope_note": "Coverage and faithfulness are separate grading claims."},
+    {"value": "recognition", "definition": "Recover a symbolic description from observed input.", "scope_note": "For example a proposed speech transcription task; no real record is asserted."},
+    {"value": "detection", "definition": "Identify occurrences or locations of declared targets.", "scope_note": "Presence detection is distinct from assigning a label to an entire record."},
+    {"value": "segmentation", "definition": "Partition input into labeled or unlabeled regions.", "scope_note": "The region unit and annotation method need separate evidence."},
+    {"value": "reasoning", "definition": "Derive an outcome through a declared inference task.", "scope_note": "This label does not certify reasoning ability or benchmark validity."},
+    {"value": "planning-control", "definition": "Choose actions or plans under a declared environment.", "scope_note": "Record safety and evaluation constraints separately; never execute a task here."},
+    {"value": "representation-learning", "definition": "Produce reusable representations of input.", "scope_note": "Representation utility and downstream use permissions are separate claims."},
+    {"value": "unknown", "definition": "The task family has not been established.", "scope_note": "Must appear alone; unknown is not evidence that a task is absent."}
+    ]},
+    {"field": "domains", "terms": [
+    {"value": "general", "definition": "No single subject domain is asserted.", "scope_note": "Requires evidence of broad scope; not a substitute for unknown."},
+    {"value": "software", "definition": "Programs, software development or computing systems.", "scope_note": "Programming language belongs in a separate sourced description."},
+    {"value": "health", "definition": "Health-related concepts or practice.", "scope_note": "Does not imply clinical validity, consent or safe use."},
+    {"value": "science", "definition": "Scientific observation, theory or experimentation.", "scope_note": "Specific discipline and measurement units require separate attribution."},
+    {"value": "finance", "definition": "Financial concepts, markets or transactions.", "scope_note": "Does not imply investment suitability or permission to process records."},
+    {"value": "law", "definition": "Legal texts, concepts or procedures.", "scope_note": "Jurisdiction and effective date are separate sourced facts."},
+    {"value": "education", "definition": "Learning, teaching or educational assessment.", "scope_note": "Learner identity and consent must never be inferred."},
+    {"value": "geospatial", "definition": "Places, spatial relationships or earth observation.", "scope_note": "Spatial coverage is separate from legal access jurisdiction."},
+    {"value": "industry", "definition": "Industrial processes, equipment or operations.", "scope_note": "No host or production access is authorized by this domain."},
+    {"value": "security", "definition": "System security, misuse or defensive assessment.", "scope_note": "Never copy exploit payloads, hidden prompts or sensitive test items."},
+    {"value": "unknown", "definition": "The subject domain has not been established.", "scope_note": "Must appear alone; missing evidence is not a general-domain claim."}
+    ]}
+  ]
+}

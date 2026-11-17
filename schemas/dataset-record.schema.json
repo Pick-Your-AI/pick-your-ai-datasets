@@ -93,6 +93,8 @@
       "type": "string",
       "minLength": 1
     },
+    "task_families": {"type": "array", "items": {"type": "string", "minLength": 1}, "minItems": 1, "uniqueItems": true},
+    "domains": {"type": "array", "items": {"type": "string", "minLength": 1}, "minItems": 1, "uniqueItems": true},
     "versions": {
       "type": "array",
       "items": {
