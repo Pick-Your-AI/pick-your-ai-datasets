@@ -16,6 +16,7 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
+import identity_model  # noqa: E402
 import planlib  # noqa: E402
 import schemalib  # noqa: E402
 
@@ -56,6 +57,7 @@ def validate_records(records: dict, today: dt.date, publication: bool, expect_sy
             version_ids[v['version_id']] = rid
     for path, record in records.items():
         rid, p = record['record_id'], path + ': '
+        errors += [p + e for e in identity_model.errors(record, publication)]
         if record['synthetic'] != expect_synthetic:
             errors.append(p + ('synthetic records belong in examples/ or tests/, never catalog/proposals/' if record['synthetic']
                                else 'examples must be explicitly synthetic'))

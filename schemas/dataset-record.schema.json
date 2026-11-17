@@ -69,6 +69,20 @@
           "issuer": {
             "type": "string",
             "minLength": 1
+          },
+          "source_id": {
+            "$ref": "#/$defs/source_id"
+          },
+          "version_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "(dataset|benchmark)\\.[a-z0-9][a-z0-9._-]*@[A-Za-z0-9._+-]+"
+              },
+              {
+                "type": "null"
+              }
+            ]
           }
         },
         "required": [
@@ -131,7 +145,40 @@
             "type": "array",
             "items": {
               "type": "string",
-              "minLength": 1
+              "enum": [
+                "json",
+                "jsonl",
+                "csv",
+                "tsv",
+                "parquet",
+                "arrow",
+                "txt",
+                "xml",
+                "html",
+                "jpeg",
+                "png",
+                "tiff",
+                "webp",
+                "gif",
+                "mp4",
+                "webm",
+                "wav",
+                "flac",
+                "mp3",
+                "ogg",
+                "hdf5",
+                "npy",
+                "npz",
+                "tfrecord",
+                "protobuf",
+                "sqlite",
+                "rdf",
+                "zip",
+                "tar",
+                "gzip",
+                "other",
+                "unknown"
+              ]
             },
             "uniqueItems": true
           },
@@ -154,7 +201,7 @@
                     "value": {
                       "anyOf": [
                         {
-                          "type": "integer",
+                          "type": "number",
                           "minimum": 0
                         },
                         {
@@ -164,6 +211,38 @@
                     },
                     "unit": {
                       "type": "string",
+                      "enum": [
+                        "examples",
+                        "records",
+                        "rows",
+                        "documents",
+                        "tokens",
+                        "images",
+                        "frames",
+                        "clips",
+                        "utterances",
+                        "speakers",
+                        "bytes",
+                        "nodes",
+                        "edges",
+                        "pairs",
+                        "trajectories",
+                        "episodes",
+                        "seconds",
+                        "milliseconds",
+                        "hours",
+                        "kilobytes",
+                        "megabytes",
+                        "gigabytes",
+                        "kibibytes",
+                        "mebibytes",
+                        "gibibytes",
+                        "other",
+                        "unknown"
+                      ]
+                    },
+                    "unit_notes": {
+                      "type": "string",
                       "minLength": 1
                     }
                   },
@@ -172,6 +251,15 @@
                     "unit"
                   ],
                   "additionalProperties": false
+                },
+                "subset_id": {
+                  "$ref": "#/$defs/nullable_local_id"
+                },
+                "config_id": {
+                  "$ref": "#/$defs/nullable_local_id"
+                },
+                "source_id": {
+                  "$ref": "#/$defs/source_id"
                 }
               },
               "required": [
@@ -219,6 +307,34 @@
             },
             "minItems": 1,
             "uniqueItems": true
+          },
+          "identity_evidence": {
+            "anyOf": [
+              {
+                "$ref": "#/$defs/identity_evidence"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "subsets": {
+            "type": "array",
+            "items": {
+              "$ref": "#/$defs/subset"
+            },
+            "uniqueItems": true
+          },
+          "configs": {
+            "type": "array",
+            "items": {
+              "$ref": "#/$defs/config"
+            },
+            "uniqueItems": true
+          },
+          "format_notes": {
+            "type": "string",
+            "minLength": 1
           }
         },
         "required": [
@@ -465,6 +581,20 @@
         ],
         "additionalProperties": false
       }
+    },
+    "maintainers": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/party"
+      },
+      "uniqueItems": true
+    },
+    "hosts": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/party"
+      },
+      "uniqueItems": true
     }
   },
   "required": [
@@ -486,5 +616,113 @@
     "withdrawal",
     "reviews"
   ],
-  "additionalProperties": false
+  "additionalProperties": false,
+  "$defs": {
+    "party": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source_id": {
+          "type": "string",
+          "pattern": "source\\.[a-z0-9][a-z0-9._-]*"
+        }
+      },
+      "required": [
+        "name",
+        "source_id"
+      ],
+      "additionalProperties": false
+    },
+    "local_id": {
+      "type": "string",
+      "pattern": "[a-z0-9][a-z0-9._-]*"
+    },
+    "source_id": {
+      "type": "string",
+      "pattern": "source\\.[a-z0-9][a-z0-9._-]*"
+    },
+    "nullable_local_id": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/local_id"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "subset": {
+      "type": "object",
+      "properties": {
+        "subset_id": {
+          "$ref": "#/$defs/local_id"
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source_id": {
+          "$ref": "#/$defs/source_id"
+        }
+      },
+      "required": [
+        "subset_id",
+        "name",
+        "source_id"
+      ],
+      "additionalProperties": false
+    },
+    "config": {
+      "type": "object",
+      "properties": {
+        "config_id": {
+          "$ref": "#/$defs/local_id"
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source_id": {
+          "$ref": "#/$defs/source_id"
+        },
+        "subset_id": {
+          "$ref": "#/$defs/nullable_local_id"
+        }
+      },
+      "required": [
+        "config_id",
+        "name",
+        "source_id"
+      ],
+      "additionalProperties": false
+    },
+    "identity_evidence": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "type": "string",
+          "enum": [
+            "publisher_version",
+            "immutable_host_revision"
+          ]
+        },
+        "marker": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source_id": {
+          "$ref": "#/$defs/source_id"
+        }
+      },
+      "required": [
+        "kind",
+        "marker",
+        "source_id"
+      ],
+      "additionalProperties": false
+    }
+  }
 }
