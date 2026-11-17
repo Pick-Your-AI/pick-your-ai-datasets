@@ -24,6 +24,39 @@ class ExistingResearchAuditTests(unittest.TestCase):
             with self.subTest(ref=ref):
                 self.assertRegex(ref, r"^[0-9a-f]{40}$")
 
+    def test_inventory_tree_is_pinned_to_research_snapshot(self):
+        text = AUDIT.read_text(encoding="utf-8")
+        snapshot = re.search(
+            r"\\| Pick-Your-AI/pick-your-ai-research \\| \\[([0-9a-f]{40})\\]",
+            text,
+        )
+        self.assertIsNotNone(snapshot, "Missing pinned research source snapshot")
+        self.assertIn(
+            "https://github.com/Pick-Your-AI/pick-your-ai-research/tree/"
+            + snapshot.group(1) + "/catalog/proposals",
+            text,
+        )
+
+    def test_receiving_decisions_are_preserved(self):
+        text = AUDIT.read_text(encoding="utf-8")
+        self.assertIn(
+            "## Required receiving decisions before DATA-01.05 closes", text
+        )
+        receiving = text.split(
+            "## Required receiving decisions before DATA-01.05 closes", 1
+        )[1].split("**Evidence level:**", 1)[0]
+        for requirement in (
+            "research/issues/32",
+            "research/issues/36",
+            "record actual disposition",
+            "Research lead maintainer",
+            "upstream issue owners",
+            "Record actual responses or disagreements",
+            "DATA-10.01",
+        ):
+            with self.subTest(requirement=requirement):
+                self.assertIn(requirement, receiving)
+
     def test_audit_preserves_upstream_owner_and_acceptance_gates(self):
         text = AUDIT.read_text(encoding="utf-8")
         for owner in (
