@@ -1,5 +1,7 @@
 # Integrations
 
+- [Proposed directory consumer specifications (DATA-11.01–04; unaccepted)](../research/consumer/information-architecture.md)
+
 Every integration is an explicit, versioned handoff with a named artifact, format, owner and review. Each is listed in [DEPENDENCIES.md](DEPENDENCIES.md#cross-repository-handoffs). Nothing here changes another repository; the receiving owners acknowledge each handoff on their own issues.
 
 | Partner | Existing owner | Exchange | Package |
