@@ -3,6 +3,7 @@ import copy
 import datetime as dt
 import json
 import sys
+import subprocess
 import unittest
 from pathlib import Path
 
@@ -11,6 +12,7 @@ sys.path.insert(0, str(ROOT / 'scripts'))
 import identity_model  # noqa: E402
 import schemalib  # noqa: E402
 import validate_catalog  # noqa: E402
+from test_catalog import CatalogTestCase
 
 
 class IdentityModelTests(unittest.TestCase):
@@ -172,6 +174,26 @@ class IdentityModelTests(unittest.TestCase):
             with self.subTest(value=value, unit=unit):
                 self.version['splits'][0]['size'].update(value=value, unit=unit)
                 self.assertTrue(schemalib.errors(self.record, schema))
+
+
+class IdentityOverflowTests(CatalogTestCase):
+    def test_overflow_json_numeric_token_is_rejected_by_catalog_cli(self):
+        for unit in ('hours', 'gigabytes'):
+            with self.subTest(unit=unit):
+                record = self.proposal()
+                record['versions'][0]['splits'][0]['size'].update(value=123.5, unit=unit)
+                encoded = json.dumps(record)
+                self.assertEqual(encoded.count('"value": 123.5'), 1)
+                path = self.root / 'catalog/proposals/overflow.json'
+                path.write_text(encoded.replace('"value": 123.5', '"value": 1e999'))
+                result = subprocess.run([sys.executable, str(ROOT / 'scripts/validate_catalog.py'),
+                                         '--root', str(self.root)], capture_output=True, text=True)
+                self.assertEqual(result.returncode, 1, result.stdout + result.stderr)
+                self.assertIn('size value must be finite or null', result.stdout)
+                path.write_text(encoded)
+                result = subprocess.run([sys.executable, str(ROOT / 'scripts/validate_catalog.py'),
+                                         '--root', str(self.root)], capture_output=True, text=True)
+                self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
 
 
 if __name__ == '__main__':

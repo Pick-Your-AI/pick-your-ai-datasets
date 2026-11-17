@@ -5,6 +5,8 @@ The functions do not rewrite issued identifiers, titles, source claims or nulls.
 """
 from __future__ import annotations
 
+import math
+
 COUNT_UNITS = frozenset(('examples', 'records', 'rows', 'documents', 'tokens', 'images',
                          'frames', 'clips', 'utterances', 'speakers', 'bytes', 'nodes',
                          'edges', 'pairs', 'trajectories', 'episodes'))
@@ -115,6 +117,8 @@ def errors(record: dict, publication: bool = False) -> list[str]:
             if 'source_id' in split:
                 source(split['source_id'], child_identity(vid, 'split', split['split_id']), version)
             size = split['size']
+            if isinstance(size['value'], float) and not math.isfinite(size['value']):
+                out.append(f'{vid}: size value must be finite or null')
             if size['unit'] == 'other' and not size.get('unit_notes', '').strip():
                 out.append(f'{vid}: other size unit requires unit_notes with the stated unit')
             if size['unit'] == 'unknown' and size['value'] is not None:
