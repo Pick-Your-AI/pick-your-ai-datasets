@@ -20,6 +20,11 @@
 
 Discovery is manual or uses documented, permitted APIs within their published limits. Crawling, scraping without permission, bulk downloading and circumventing access gates are prohibited. Work package DATA-02.01 approves the detailed protocol.
 
+The [proposed discovery protocol](DISCOVERY_PROTOCOL.md) and
+[source-use review template](../templates/source-use-review.md) make the method,
+terms, attribution and rate-limit evidence reviewable. They remain unaccepted;
+their existence supplies no source permission or automated-collection authorization.
+
 ## Consent and personal data
 
 Record what the dataset's own documentation says about consent, de-identification and opt-out. If it says nothing, record unknown. Never handle personal data to verify a claim. Records with personal or sensitive data carry a sensitivity flag (DATA-05.03).
