@@ -1,0 +1,84 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Proposed Project vocabulary and term definitions",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": "0.1.0"
+    },
+    "status": {
+      "const": "proposed"
+    },
+    "source": {
+      "const": "planning/project-backlog.json#project.fields"
+    },
+    "vocabularies": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/vocabulary"
+      }
+    },
+    "record_vocabularies": {
+      "type": "array",
+      "minItems": 2,
+      "items": {
+        "$ref": "#/$defs/vocabulary"
+      }
+    }
+  },
+  "required": [
+    "schema_version",
+    "status",
+    "source",
+    "vocabularies",
+    "record_vocabularies"
+  ],
+  "additionalProperties": false,
+  "$defs": {
+    "term": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "type": "string",
+          "minLength": 1
+        },
+        "definition": {
+          "type": "string",
+          "minLength": 1
+        },
+        "scope_note": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "value",
+        "definition",
+        "scope_note"
+      ],
+      "additionalProperties": false
+    },
+    "vocabulary": {
+      "type": "object",
+      "properties": {
+        "field": {
+          "type": "string",
+          "minLength": 1
+        },
+        "terms": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/term"
+          }
+        }
+      },
+      "required": [
+        "field",
+        "terms"
+      ],
+      "additionalProperties": false
+    }
+  }
+}

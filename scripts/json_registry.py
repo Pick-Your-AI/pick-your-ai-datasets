@@ -18,6 +18,7 @@ PLAN_SCHEMAS = {
     'planning/decision-register.json': 'schemas/planning-decisions.schema.json',
     'planning/release-manifest.json': 'schemas/planning-release.schema.json',
     'planning/issue-map.json': 'schemas/planning-issue-map.schema.json',
+    'planning/taxonomy.json': 'schemas/taxonomy.schema.json',
 }
 RECORD_SCHEMA = 'schemas/dataset-record.schema.json'
 SCHEMA_FILES = frozenset((*PLAN_SCHEMAS.values(), RECORD_SCHEMA))
