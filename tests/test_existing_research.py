@@ -27,7 +27,7 @@ class ExistingResearchAuditTests(unittest.TestCase):
     def test_inventory_tree_is_pinned_to_research_snapshot(self):
         text = AUDIT.read_text(encoding="utf-8")
         snapshot = re.search(
-            r"\\| Pick-Your-AI/pick-your-ai-research \\| \\[([0-9a-f]{40})\\]",
+            r"\| Pick-Your-AI/pick-your-ai-research \| \[([0-9a-f]{40})\]",
             text,
         )
         self.assertIsNotNone(snapshot, "Missing pinned research source snapshot")
