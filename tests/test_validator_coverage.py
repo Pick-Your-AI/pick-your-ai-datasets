@@ -162,5 +162,20 @@ class ProjectFieldRejections(PlanTestCase):
         self.assert_rejected('is not an option')
 
 
+
+class MissingDerivedProjectFieldRejections(PlanTestCase):
+    """A required derived Project field may not disappear from the schema."""
+
+    def test_undefined_derived_field_is_rejected(self):
+        backlog = self.read('planning/project-backlog.json')
+        original = backlog['project']['fields']
+        backlog['project']['fields'] = [
+            field for field in original if field['name'] != 'Acceptance Status'
+        ]
+        self.assertEqual(len(backlog['project']['fields']), len(original) - 1)
+        self.write('planning/project-backlog.json', backlog)
+        self.assert_rejected('project: derived field Acceptance Status is not defined')
+
+
 if __name__ == '__main__':
     unittest.main()
