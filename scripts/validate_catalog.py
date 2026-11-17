@@ -18,6 +18,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import planlib  # noqa: E402
 import schemalib  # noqa: E402
+import json_registry  # noqa: E402
 
 PROPOSALS = 'catalog/proposals'
 EXAMPLES = 'examples'
@@ -177,6 +178,9 @@ def load_records(root: Path, directory: str):
 
 def validate(root: Path, publication=False, today=None):
     today = today or dt.date.today()
+    errors = json_registry.validate(root)
+    if errors:
+        return sorted(set(errors + material_errors(root))), {}
     errors, stats = [], {}
     for directory, synthetic in ((PROPOSALS, False), (EXAMPLES, True)):
         records, problems = load_records(root, directory)

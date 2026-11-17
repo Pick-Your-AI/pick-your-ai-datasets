@@ -20,6 +20,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import planlib  # noqa: E402
 import schemalib  # noqa: E402
+import json_registry  # noqa: E402
 
 FILES = {
     'planning/project-backlog.json': 'planning-backlog',
@@ -51,6 +52,9 @@ def is_automation_account(login: str) -> bool:
 
 
 def load(root: Path):
+    problems = json_registry.validate(root)
+    if problems:
+        return {}, problems
     docs, problems = {}, []
     for path, schema_name in FILES.items():
         try:

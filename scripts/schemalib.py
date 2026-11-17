@@ -44,8 +44,19 @@ def _type_ok(value, expected):
 
 def errors(value, schema, at='$', root=None):
     root = root if root is not None else schema
-    if '$ref' in schema:
-        schema = root['$defs'][schema['$ref'].split('/')[-1]]
+    seen_references = set()
+    while '$ref' in schema:
+        reference = schema['$ref']
+        if not isinstance(reference, str) or not re.fullmatch(r'#/\$defs/[A-Za-z0-9._-]+', reference):
+            return [f'{at}: only local #/$defs/name references are allowed']
+        if reference in seen_references:
+            return [f'{at}: cyclic local reference {reference}']
+        seen_references.add(reference)
+        definitions = root.get('$defs', {})
+        target = definitions.get(reference.removeprefix('#/$defs/')) if isinstance(definitions, dict) else None
+        if not isinstance(target, dict):
+            return [f'{at}: unresolved local reference {reference}']
+        schema = target
     out = []
     if 'anyOf' in schema:
         if not any(not errors(value, sub, at, root) for sub in schema['anyOf']):
