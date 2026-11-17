@@ -20,7 +20,8 @@ A withdrawn or superseded record is kept as a tombstone. The tombstone records t
 | Issues and relationships | Recreate them from `planning/project-backlog.json` and `planning/issues/`, reconciled against `planning/issue-map.json` |
 | Project values | Recreate them using the empty-values-only rule in `docs/PROJECT_SETUP.md` |
 
-Work package DATA-09.04 records a recovery drill.
+See [the recovery runbook and recorded offline drill](RECOVERY.md) for DATA-09.04,
+repository recovery, and issue/Project reconciliation limits.
 
 ## Ownership
 
